@@ -37,7 +37,9 @@ function newTodo() {
     itemCountSpan.innerHTML = parseInt(itemCountSpan.innerHTML) + 1
     uncheckedCountSpan.innerHTML = parseInt(uncheckedCountSpan.innerHTML)+1
 
-    // tod.onclick = checkFunction(todo)
+    // sai vì onclick là DOM property trong javascript không phải attribute onclick trong file innerHTML
+    // nếu không định nghĩa là function mà gán như dòng dưới thì property sẽ = kết quả gọi hàm checkFunction(todo)-> vừa tạo mới vừa check 
+    // todo.onclick = checkFunction(todo)
     todo.onclick =function(){
       checkFunction(todo)
     }
