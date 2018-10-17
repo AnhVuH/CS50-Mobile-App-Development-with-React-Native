@@ -11,8 +11,8 @@ const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 let itemCount = parseInt(itemCountSpan.innerHTML)
 let uncheckedCount = parseInt(uncheckedCountSpan.innerHTML)
-// let id = 0
 
+let idItem = 0
 
 function newTodo() {
   let text = prompt("New TODO: ")
@@ -40,12 +40,11 @@ function newTodo() {
     newTodo.appendChild(todoText)
     newTodo.appendChild(todoCheckBox)
     newTodo.appendChild(delButton)
-    // newTodo.id = id++
+    newTodo.className = classNames.TODO_ITEM
+    newTodo.id = idItem++
 
-
-    todoCheckBox.onclick = ()=> checkFunction(todoCheckBox.checked)
-    // delButton.onclick = () => delFunction(newTodo.id)
-    delButton.onclick = () => delFunction(newTodo)
+    todoCheckBox.onclick = ()=> checkFunction(newTodo.id)
+    delButton.onclick = () => delFunction(newTodo.id)
 
     list.appendChild(newTodo)
     itemCount +=1
@@ -55,7 +54,10 @@ function newTodo() {
   }
 }
 
-function checkFunction(checked){
+
+function checkFunction(idItem){
+  let checked = document.getElementById(idItem).getElementsByClassName(classNames.TODO_CHECKBOX)[0].checked
+  // console.log(checked)
   if(checked === false){
     uncheckedCount +=1
   }
@@ -65,15 +67,15 @@ function checkFunction(checked){
   uncheckedCountSpan.innerHTML = uncheckedCount
 }
 
-function delFunction(Todo){
-  // let delTodo = getElementById(id)
-  // delTodo = ""
-  Todo.innerHTML = ""
+function delFunction(idItem){
+  let delItem = document.getElementById(idItem)
+  let checked = delItem.getElementsByClassName(classNames.TODO_CHECKBOX)[0].checked
   itemCount -=1
   itemCountSpan.innerHTML = itemCount
-  if(uncheckedCount >0){
+
+  if(uncheckedCount >0 && !checked){
     uncheckedCount -=1
   }
-
   uncheckedCountSpan.innerHTML = uncheckedCount
+  list.removeChild(delItem)
 }
