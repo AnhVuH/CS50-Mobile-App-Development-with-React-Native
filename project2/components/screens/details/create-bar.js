@@ -1,9 +1,7 @@
-import {StyleSheet} from 'react-native'
-
-const createRateBar =(valueString)=>{
+import{StyleSheet} from 'react-native'
+export const createRateBar =(valueString)=>{
     let value = parseFloat(valueString)
     if(value <10) value = value*10
-    console.log(value)
     if(value >=80)
       return(
         StyleSheet.create({
@@ -35,5 +33,3 @@ const createRateBar =(valueString)=>{
           })
         );
   }
-
-export default createRateBar;

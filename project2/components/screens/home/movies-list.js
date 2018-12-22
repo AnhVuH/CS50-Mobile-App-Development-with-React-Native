@@ -1,17 +1,16 @@
 import React from 'react';
 import{FlatList,Text,Image,TouchableOpacity,View,StyleSheet} from 'react-native';
+import {getDetails} from '../../api/getDetails'
 
 export default class MoviesList extends React.Component{
-  handlePress = (id)=>{
-    fetch(`http://www.omdbapi.com/?i=${id}&apikey=62fcdfc3`)
-    .then(response=>{
-      return JSON.parse(response._bodyInit)
-    })
+  handlePress(id){
+    getDetails(id)
     .then(responseJSON=>{
-      // console.log(responseJSON)
+
       this.props.navigation.navigate('Details',{movie: responseJSON})
-    })
+    })  ;
   }
+
   _renderItem =
         ({item})=>{ // destructuring item of each component in List
           // console.log(item)

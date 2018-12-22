@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
-import HomeScreen from './screens/home-screen';
-import DetailsScreen from './screens/details-screen';
+import HomeScreen from './components/screens/home/home-screen';
+import DetailsScreen from './components/screens/details/details-screen';
 
 
 const AppNavigator = createStackNavigator({
